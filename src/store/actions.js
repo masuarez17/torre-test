@@ -1,4 +1,5 @@
 import { fetchUsers } from '../api/fetchUsers'
+// import { searchDetails } from '../api/searchUserDetails'
 
 export default {
   fetchUsers ({ commit }, query) {
@@ -11,6 +12,7 @@ export default {
         const results = []
         data.forEach(user => {
           user.isComparing = false
+          // searchDetails(user.username)
           results.push(user)
         })
         console.log('RESULTS: ', results)
