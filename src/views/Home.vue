@@ -6,16 +6,27 @@
           <div class="input-group input-group-lg">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <span>u</span>
+                <font-awesome-icon icon="users"/>
               </div>
             </div>
             <input
+              v-model="searchQuery"
               type="text"
               class="form-control"
               aria-label="Large"
-              placeholder="Buscar usuario"
-              @keypress.enter="haveResults = !haveResults"
+              placeholder="Search by name"
+              @keypress.enter="fetchUsers"
             />
+            <button type="button" :disabled="isSearching" @click="fetchUsers" class="btn btn-outline-secondary">
+              <div v-if="isSearching">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div v-else>
+                Search
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -80,7 +91,26 @@ export default {
   name: 'Home',
   data: () => {
     return {
-      haveResults: false
+      searchQuery: ''
+    }
+  },
+  computed: {
+    haveResults () {
+      return this.$store.state.haveResults
+    },
+    isSearching () {
+      return this.$store.state.isSearching
+    }
+  },
+  methods: {
+    fetchUsers () {
+      if (this.searchQuery === '' || !/\S/.test(this.searchQuery) || this.isSearching) {
+        return
+      }
+      const query = {
+        name: this.searchQuery
+      }
+      this.$store.dispatch('fetchUsers', query)
     }
   }
 }
