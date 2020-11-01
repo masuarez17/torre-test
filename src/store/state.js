@@ -1,5 +1,6 @@
 export default {
   usersTableData: [],
   isSearching: false,
-  haveResults: false
+  haveResults: false,
+  compareTableData: []
 }

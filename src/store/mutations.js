@@ -13,5 +13,12 @@ export default {
   },
   STOP_SEARCHING (state) {
     state.isSearching = false
+  },
+  ADD_TO_COMPARE (state, user) {
+    state.compareTableData.push(user)
+  },
+  REMOVE_FROM_COMPARE (state, user) {
+    const index = state.compareTableData.indexOf(user)
+    state.compareTableData.splice(index, 1)
   }
 }
