@@ -24,8 +24,8 @@
         </b-row>
       </b-container>
     </div>
-    <div class="row mt-5 justify-content-center" v-else>
-      <h1 class="text-white">Add users to compare</h1>
+    <div class="row mt-5 text-center align-items-start justify-content-center" v-else>
+      <h1 class="text-white text-center">Add users to compare</h1>
     </div>
     <br/>
     <br/>
